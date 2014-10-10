@@ -11,6 +11,7 @@ var s *Sysinfo = &Sysinfo{
 	swapTotal: 5,
 	swapFree:  2,
 	load:      [3]uint64{1, 2, 3},
+	procs:     6,
 }
 
 func TestNewSysinfo(t *testing.T) {
@@ -50,5 +51,19 @@ func TestMemUsedPercent(t *testing.T) {
 	mem := s.MemUsedPercent()
 	if mem != ((s.memTotal - (s.memFree + s.memBuffer)) * 100 / s.memTotal) {
 		t.Errorf("MemUsedPercent value wrong: got %d, expected %d\n", mem, (s.memTotal-(s.memFree+s.memBuffer))*100/s.memTotal)
+	}
+}
+
+func TestProcs(t *testing.T) {
+	procs := s.Procs()
+	if procs != s.procs {
+		t.Errorf("Procs value wrong: got %d, expected %d\n", procs, s.procs)
+	}
+}
+
+func TestLoad(t *testing.T) {
+	load := s.Load()
+	if load != s.load[1] {
+		t.Errorf("Load value wrong: got %d, expected %d\n", load, s.load[1])
 	}
 }

@@ -16,6 +16,7 @@ type Sysinfo struct {
 	swapTotal uint64
 	swapFree  uint64
 	load      [3]uint64
+	procs     uint16
 }
 
 func (s *Sysinfo) Update() {
@@ -34,6 +35,7 @@ func (s *Sysinfo) Update() {
 	s.swapTotal = info.Totalswap
 	s.swapFree = info.Freeswap
 	s.load = info.Loads
+	s.procs = info.Procs
 }
 
 func (s Sysinfo) Uptime() int64 {
@@ -54,6 +56,15 @@ func (s Sysinfo) MemUsed() uint64 {
 
 func (s Sysinfo) MemUsedPercent() uint64 {
 	return s.MemUsed() * 100 / s.MemTotal()
+}
+
+func (s Sysinfo) Procs() uint16 {
+	return s.procs
+}
+
+// Load returns only 5 minute load average.
+func (s Sysinfo) Load() uint64 {
+	return s.load[1]
 }
 
 func NewSysinfo() *Sysinfo {
