@@ -21,19 +21,19 @@ func uptime() (uint64, string, string) {
 }
 
 func memTotal() (uint64, string, string) {
-	return NewSysinfo().MemTotal(), "Bytes", "totalMemory"
+	return NewSysinfo().MemTotal(), "Bytes", "memoryTotal"
 }
 
 func memFree() (uint64, string, string) {
-	return NewSysinfo().MemFree(), "Bytes", "freeMemory"
+	return NewSysinfo().MemFree(), "Bytes", "memoryFree"
 }
 
 func memUsed() (uint64, string, string) {
-	return NewSysinfo().MemUsed(), "Bytes", "usedMemory"
+	return NewSysinfo().MemUsed(), "Bytes", "memoryUsed"
 }
 
 func memUsedPercent() (uint64, string, string) {
-	return NewSysinfo().MemUsedPercent(), "Percent", "usedMemoryPercent"
+	return NewSysinfo().MemUsedPercent(), "Percent", "memoryUsedPercent"
 }
 
 func procs() (uint64, string, string) {
@@ -45,19 +45,19 @@ func load() (uint64, string, string) {
 }
 
 func diskFree() (uint64, string, string) {
-	return NewDiskStat("").Free(), "Bytes", "freeDisk"
+	return NewDiskStat("").Free(), "Bytes", "diskFree"
 }
 
 func diskTotal() (uint64, string, string) {
-	return NewDiskStat("").Total(), "Bytes", "totalDisk"
+	return NewDiskStat("").Total(), "Bytes", "diskTotal"
 }
 
 func diskUsed() (uint64, string, string) {
-	return NewDiskStat("").Used(), "Bytes", "usedDisk"
+	return NewDiskStat("").Used(), "Bytes", "diskUsed"
 }
 
 func diskUsedPercent() (uint64, string, string) {
-	return NewDiskStat("").UsedPercent(), "Percent", "usedDiskPercent"
+	return NewDiskStat("").UsedPercent(), "Percent", "diskUsedPercent"
 }
 
 func getResource(resource string) (uint64, string, string) {
