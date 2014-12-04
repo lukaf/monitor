@@ -1,8 +1,8 @@
-package main
+package monitor
 
 import "strings"
 
-var resources = map[string]func() (uint64, string, string){
+var Resources = map[string]func() (uint64, string, string){
 	"uptime":          uptime,
 	"memTotal":        memTotal,
 	"memFree":         memFree,
@@ -60,13 +60,13 @@ func diskUsedPercent() (uint64, string, string) {
 	return NewDiskStat("").UsedPercent(), "Percent", "diskUsedPercent"
 }
 
-func getResource(resource string) (uint64, string, string) {
-	return resources[resource]()
+func GetResource(resource string) (uint64, string, string) {
+	return Resources[resource]()
 }
 
-func listResources() string {
+func ListResources() string {
 	var resourceList []string
-	for resource := range resources {
+	for resource := range Resources {
 		resourceList = append(resourceList, resource)
 	}
 

@@ -1,6 +1,6 @@
 // +linux
 
-package main
+package monitor
 
 import (
 	"log"
